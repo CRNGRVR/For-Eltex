@@ -111,6 +111,7 @@ int main(void) {
         case '5':
 
             isRunning = 0;
+            free(subscribers);
             break;
 
         default:
