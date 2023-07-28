@@ -7,5 +7,8 @@
 # Unignore all dirs
 !*/
 
+# Makefile не имеют расширений, но не должны быть проигнорированы
+!Makefile
+
 .DS_Store
 .vscode
