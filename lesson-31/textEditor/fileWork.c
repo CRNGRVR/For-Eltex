@@ -9,16 +9,23 @@
 #define FILE_BUFF_SIZE 1000
 
 
-void fileWork_open(char *fileName, char *buff, bool *flag) {
-
-    int fd = open(fileName, O_RDWR);
-    char buff_single;
+int fileWork_buffLen(char *buff) {
     int counter = 0;
+    while (buff[counter] != 0) {
+        counter++;
+    }
+
+    return counter;
+}
+
+void fileWork_open(char *fileName, char *buff, bool *flag) {
+    int fd = open(fileName, O_RDWR);
+    int counter = 0;
+    char buff_single;
 
     if (-1 == fd) {
         *flag = FILE_NEED_TO_CREATE;
     } else {
-
         *flag = FILE_EXISTS;
         while (0 < read(fd, &buff_single, 1)) {
             buff[counter] = buff_single;
@@ -30,7 +37,6 @@ void fileWork_open(char *fileName, char *buff, bool *flag) {
 }
 
 void fileWork_save(char *fileName, char *buff, bool *flag) {
-
     int fd;
     int counter = 0;
 
@@ -40,7 +46,7 @@ void fileWork_save(char *fileName, char *buff, bool *flag) {
         fd = open(fileName, O_RDWR | O_TRUNC);
     }
 
-    while (buff[counter] != 0 && counter != FILE_BUFF_SIZE) {
+    while (counter < fileWork_buffLen(buff) && counter != FILE_BUFF_SIZE) {
         write(fd, &buff[counter], 1);
         counter++;
     }

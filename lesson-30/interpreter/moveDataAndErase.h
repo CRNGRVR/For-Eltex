@@ -11,7 +11,6 @@
  *  Эта функция усекает файл pathDest до нулевой длины(стирает), записывает в
  *  него данные из файла pathSrc. После записи стирает pathSrc.
 */
-
 void moveDataAndErase(char *pathDest, char *pathSrc);
 
 #endif

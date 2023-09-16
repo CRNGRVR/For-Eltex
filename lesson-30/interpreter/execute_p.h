@@ -17,7 +17,6 @@
  *  outputFP. Если указать isLastExecInQueue = true, вывод будет перенаправлен
  *  на экран.
 */
-
 void execute_p(char *path, char **args, bool isLastExecInQueue, char *inputFP,
                char *outputFP);
 
