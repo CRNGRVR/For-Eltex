@@ -1,12 +1,12 @@
 #include <string.h>
 
 void getDirPath_previous(char *path) {
-    for (int i = strlen(path); i > 0; i--) {
-        if (path[i] == '/') {
-            path[i] = 0;
+    for (int index = strlen(path); index > 0; index--) {
+        if (path[index] == '/') {
+            path[index] = 0;
             break;
         } else {
-            path[i] = 0;
+            path[index] = 0;
         }
     }
 }
