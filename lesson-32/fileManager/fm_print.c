@@ -53,11 +53,13 @@ void fm_printList(fm_window *win) {
 
     for (int i = win->alignment; i < countToPrint; i++) {
         if (i != win->selectedIndex) {
-            _printLimited(win->screen, win->files[i]->d_name, SCREEN_WIDTH_FOR_LIST, win->files[i]->d_type);
+            _printLimited(win->screen, win->files[i]->d_name,
+                          SCREEN_WIDTH_FOR_LIST, win->files[i]->d_type);
         } else {
             //  Вывод элемента с подсветкой
             wattron(win->screen, COLOR_PAIR(1));
-            _printLimited(win->screen, win->files[i]->d_name, SCREEN_WIDTH_FOR_LIST, win->files[i]->d_type);
+            _printLimited(win->screen, win->files[i]->d_name,
+                          SCREEN_WIDTH_FOR_LIST, win->files[i]->d_type);
             wattroff(win->screen, COLOR_PAIR(1));
         }
     }
@@ -78,7 +80,8 @@ void fm_printList_withoutMark(fm_window *win) {
     }
 
     for (int i = win->alignment; i < countToPrint; i++) {
-        _printLimited(win->screen, win->files[i]->d_name, SCREEN_WIDTH_FOR_LIST, win->files[i]->d_type);
+        _printLimited(win->screen, win->files[i]->d_name,
+                      SCREEN_WIDTH_FOR_LIST, win->files[i]->d_type);
     }
     wrefresh(win->screen);
 }

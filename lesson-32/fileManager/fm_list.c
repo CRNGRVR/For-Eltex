@@ -40,7 +40,8 @@ void fm_list_down(fm_window *win) {
 void fm_list_enterDir(fm_window *win) {
     //  Выбор пункта назад "/.."
     if (win->selectedIndex != -1) {
-        getDirPath_next(win->currentPath, win->files[win->selectedIndex]->d_name);
+        getDirPath_next(win->currentPath,
+                        win->files[win->selectedIndex]->d_name);
         win->filesCount = scandir(win->currentPath, &win->files, NULL, NULL);
     } else {
         getDirPath_previous(win->currentPath);

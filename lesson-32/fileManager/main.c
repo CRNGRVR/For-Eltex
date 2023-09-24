@@ -56,8 +56,10 @@ int main() {
 
     strcpy(leftWin.currentPath, "/");
     strcpy(rightWin.currentPath, "/");
-    leftWin.filesCount = scandir(leftWin.currentPath, &(leftWin.files), NULL, NULL);
-    rightWin.filesCount = scandir(rightWin.currentPath, &(rightWin.files), NULL, NULL);
+    leftWin.filesCount = scandir(leftWin.currentPath, &(leftWin.files), NULL,
+                                 NULL);
+    rightWin.filesCount = scandir(rightWin.currentPath, &(rightWin.files),
+                                  NULL, NULL);
 
 
     fm_printList(&leftWin);
