@@ -1,2 +1,2 @@
-simple: simple.c
-				gcc simple.c -o simple
+simple: main.c
+				gcc main.c -o simple

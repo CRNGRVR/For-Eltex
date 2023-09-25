@@ -1,8 +1,8 @@
-//
-//  22.08.2023
-//
-//  Передача данных в неименованных каналах
-//
+/**
+ *  22.08.2023
+ *
+ *  Передача данных в неименованных каналах
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,9 +10,7 @@
 #include <sys/types.h>
 #include <string.h>
 
-
 int main() {
-
     pid_t child;
 
     //  Дескрипторы для обмена
@@ -33,7 +31,7 @@ int main() {
     child = fork();
 
 
-    if(0 == child) {
+    if (0 == child) {
         //  Дочерний процесc
 
         //  Закрытие неиспользуемых дескрипторов
@@ -48,10 +46,8 @@ int main() {
 
         close(fd1[0]);
 
-
         write(fd2[1], hello, 6);
         close(fd2[1]);
-
 
         exit(EXIT_SUCCESS);
 
@@ -73,7 +69,6 @@ int main() {
         printf("\n");
 
         close(fd2[0]);
-
 
         exit(EXIT_SUCCESS);
     }

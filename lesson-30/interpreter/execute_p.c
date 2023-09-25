@@ -9,7 +9,6 @@
 
 #define ACCES_FOR_ALL S_IRWXU | S_IRWXG | S_IRWXO
 
-
 void execute_p(char *path, char **args, bool isLastExecInQueue, char *inputFP,
                char *outputFP) {
 
@@ -35,8 +34,7 @@ void execute_p(char *path, char **args, bool isLastExecInQueue, char *inputFP,
             printf("Ошибка выполнения\n");
             exit(EXIT_FAILURE);
         }
-    }
-    else {
+    } else {
         waitpid(pid, NULL, NULL);
     }
 

@@ -1,2 +1,2 @@
-test: test.c
-				gcc test.c -o test
+test: main.c
+				gcc main.c -o test

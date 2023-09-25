@@ -1,2 +1,2 @@
-market: market.c
-				gcc market.c -o market -pthread -g
+market: main.c
+				gcc main.c -o market -pthread -g

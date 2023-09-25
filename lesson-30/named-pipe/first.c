@@ -1,9 +1,9 @@
-//
-//  24.08.2023
-//
-//  Программа 1
-//  Передача данных в именованных каналах
-//
+/**
+ *  24.08.2023
+ *
+ *  Программа 1
+ *  Передача данных в именованных каналах
+*/
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -15,7 +15,6 @@
 
 #define FIRST_PIPE_FILE "firstFile"
 #define SECOND_PIPE_FILE "secondFile"
-
 
 int main() {
     //  first:  1 -> 2
@@ -47,7 +46,7 @@ int main() {
             break;
         }
 
-        if(buff != NULL) received = true;
+        if (buff != NULL) received = true;
     }
 
     firstFD = open(FIRST_PIPE_FILE, O_WRONLY);

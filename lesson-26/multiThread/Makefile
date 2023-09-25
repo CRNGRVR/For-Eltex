@@ -1,2 +1,2 @@
-multiThread: multiThread.c
-				gcc multiThread.c -o multiThread -pthread
+multiThread: main.c
+				gcc main.c -o multiThread -pthread

@@ -1,5 +1,5 @@
-#ifndef _EXECUTE_MODULE
-#define _EXECUTE_MODULE 1
+#ifndef _EXECUTE_P
+#define _EXECUTE_P 1
 
 /**
  *  execute_p - запускает исполняемый файл с аргументами, перенаправляя вывод

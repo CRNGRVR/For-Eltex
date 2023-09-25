@@ -1,2 +1,2 @@
-interpreter: interpreter.c
-				gcc interpreter.c -o interpreter -g
+interpreter: main.c
+				gcc main.c -o interpreter -g

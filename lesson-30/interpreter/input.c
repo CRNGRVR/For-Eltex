@@ -2,9 +2,7 @@
 #include <string.h>
 #include <malloc.h>
 
-
 int input(char ***tokens_ext, int maxInputSize) {
-
     //  Строка ввода с клавиатуры
     char inputStr[maxInputSize];
 
@@ -29,7 +27,6 @@ int input(char ***tokens_ext, int maxInputSize) {
 
     //  Разделение на: команда -флаг -флаг
     for (int index = 1; index < 150; index++) {
-
         tokenCount++;
         tokens_tmp = (char**)realloc(tokens_tmp, (tokenCount + 1) * sizeof(char**));
         tokens_tmp[tokenCount] = (char*)strtok(NULL, "|");
@@ -39,7 +36,6 @@ int input(char ***tokens_ext, int maxInputSize) {
             break;
         }
     }
-
 
     //  Дублирование в итоговый массив
     tokens = (char**)calloc(tokenCount, sizeof(char**));

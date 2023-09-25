@@ -1,25 +1,20 @@
-//
-//  15.05.2023
-//
-//  Побайтовый вывод числа и изменение в нём одного байта
-//
+/**
+ *  15.05.2023
+ *
+ *  Побайтовый вывод числа и изменение в нём одного байта
+*/
 
 #include <stdio.h>
 
-
-int main(void) {
-
+int main() {
     unsigned int b = 0xAABBCCDD;
     char *pointer = &b;
 
-
     //  Вывод в изначальном порядке(развёрнутый)
-    for(int i = sizeof(b) - 1; i >= 0; i--) {
-        printf("%x ", pointer[i]);
+    for (int index = sizeof(b) - 1; index >= 0; index--) {
+        printf("%x ", pointer[index]);
     }
-
     printf("\n");
-
 
     int newValue = 0xEF;
     *(pointer + 2) = newValue;

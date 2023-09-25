@@ -3,7 +3,6 @@
 
 #define BIN_FILES_FOLDER "/bin/"
 
-
 void parser(char *command, char *filePath, char ***args_o) {
 
     char *binName;
@@ -21,7 +20,6 @@ void parser(char *command, char *filePath, char ***args_o) {
     args[0] = binName;
 
     for (int index1 = 1; ; index1++) {
-
         args = (char**)realloc(args, (index1 + 1) * sizeof(char**));
         args[index1] = (char*)strtok(NULL, " ");
         if (args[index1] == NULL) break;

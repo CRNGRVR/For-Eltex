@@ -3,9 +3,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-
 void moveDataAndErase(char *pathDest, char *pathSrc) {
-
     int destFd;
     int srcFd;
     char buff;

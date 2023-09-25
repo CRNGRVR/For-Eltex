@@ -1,16 +1,14 @@
-//
-//  28.08.2023
-//
-//  Командный интерпретатор с конвейером
-//
-//  Приглашает ввести команду, порождает дочерний процесс выбранной команды,
-//  по завершению вновь приглашает к вводу.
-//  Команды могут быть введены с ключами и конвейером
-//
+/**
+ *  28.08.2023
+ *
+ *  Командный интерпретатор с конвейером
+ *  Приглашает ввести команду, порождает дочерний процесс выбранной команды,
+ *  по завершению вновь приглашает к вводу.
+ *  Команды могут быть введены с ключами и конвейером
+*/
 
 #include <malloc.h>
 #include <stdbool.h>
-
 #include "input.h"
 #include "parser.h"
 #include "moveDataAndErase.h"
@@ -20,7 +18,6 @@
 #define MAX_FILEPATH_SIZE 100
 #define INPUT_FILE_NAME "tmp1"
 #define OUTPUT_FILE_NAME "tmp2"
-
 
 int main() {
 
@@ -33,12 +30,10 @@ int main() {
     char **args;
 
     while (1) {
-
         commandsCount = input(&commands, MAX_INPUT_SIZE);
 
         //  Выполнение конвейера. За каждую итерацию выполняется одна программа
         for (int index = 0; index < commandsCount; index++) {
-
             parser(commands[index], path, &args);
             moveDataAndErase(INPUT_FILE_NAME, OUTPUT_FILE_NAME);
 

@@ -1,47 +1,40 @@
-//
-//  11.05.2023
-//
-//  Вывод массива размером N в обратном порядке
-//
+/**
+ *  11.05.2023
+ *
+ *  Вывод массива размером N в обратном порядке
+*/
 
 #include <stdio.h>
 
 #define N 5
 
-
-int main(void) {
-
+int main() {
     int origin[N];
     int total[N];
-    
+
     //  Заполнение
-    for (int i = 0; i < N; i++) {
-        origin[i] = i + 1;
+    for (int index = 0; index < N; index++) {
+        origin[index] = index + 1;
     }
-    
 
     //  Вывод до изменений
     printf("До изменений: ");
-
-    for (int i = 0; i < N; i++) {   
-        printf("%d ", origin[i]);
+    for (int index = 0; index < N; index++) {
+        printf("%d ", origin[index]);
     }
-        
     printf("\n");
 
 
     //  Изменение
-    for (int i = 0; i < N; i++) {
-        total[i] = origin[(N - 1) - i];
+    for (int index = 0; index < N; index++) {
+        total[index] = origin[(N - 1) - index];
     }
-    
 
     //  Вывод после изменений
-    for (int i = 0; i < N; i++) {   
-        printf("%d ", total[i]);
+    for (int index = 0; index < N; index++) {
+        printf("%d ", total[index]);
     }
 
     printf("\n");
-
     return 0;
 }
