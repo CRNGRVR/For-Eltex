@@ -16,7 +16,7 @@ void session_start(int *qfd_in, int *qfd_out_msg, int *qfd_out_names) {
     key_t key2 = ftok(PATHNAME, PROJID2);
     key_t key3 = ftok(PATHNAME, PROJID3);
 
-    *qfd_in = msgget(key1, IPC_CREAT  | S_IRUSR | S_IWUSR);
+    *qfd_in = msgget(key1, IPC_CREAT | S_IRUSR | S_IWUSR);
     *qfd_out_msg = msgget(key2, IPC_CREAT | S_IRUSR | S_IWUSR);
     *qfd_out_names = msgget(key3, IPC_CREAT | S_IRUSR | S_IWUSR);
 }
