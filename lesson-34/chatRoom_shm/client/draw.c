@@ -7,11 +7,13 @@
 #include "../Common/msg.h"
 
 pthread_mutex_t drawMutex = PTHREAD_MUTEX_INITIALIZER;
+void _clearName(char *name);
+
 
 void draw_start(draw_screen *screen) {
     initscr();
     start_color();
-    init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(1, COLOR_GREEN, COLOR_BLACK);
     screen->mainScreen = newwin(25, 80, 0, 0);
     curs_set(0);
     keypad(screen->mainScreen, true);
@@ -23,7 +25,7 @@ void draw_getName(draw_screen *screen, char *name) {
     wattroff(screen->mainScreen, A_BOLD | COLOR_PAIR(1));
     wprintw(screen->mainScreen, " It's simple IPC chatroom. Works on");
     wattron(screen->mainScreen, A_BOLD);
-    wprintw(screen->mainScreen, " System V message queues\n");
+    wprintw(screen->mainScreen, " System V Shared memory\n");
     wattroff(screen->mainScreen, A_BOLD);
     wprintw(screen->mainScreen, " Follow the process party!\n\n");
     wprintw(screen->mainScreen, " [F3] - exit from chat\n\n");
@@ -35,6 +37,7 @@ void draw_getName(draw_screen *screen, char *name) {
     keypad(field, true);
     wprintw(field, " -> ");
 
+    _clearName(name);
     int index = 0;
     while (1) {
         int ch = wgetch(field);
@@ -87,8 +90,8 @@ void draw_chat_update(draw_screen *screen, msg_common *messages) {
     for (int index = 0; index < MAX_LIST_OF_MSG; index++) {
         //  Проверка на наличие сообщения через pid отправителя
         if (messages[index].client.pid != 0) {
-            wprintw(screen->historyScreen, "%s: %s\n", messages[index].client.name,
-                    messages[index].payload);
+            wprintw(screen->historyScreen, "%s: %s\n", 
+                    messages[index].client.name, messages[index].payload);
         }
     }
 
@@ -116,4 +119,11 @@ void draw_clearField(WINDOW *win) {
     wattroff(win, COLOR_PAIR(1));
     wrefresh(win);
     pthread_mutex_unlock(&drawMutex);
+}
+
+
+void _clearName(char *name) {
+    for (int index = 0; index < MAX_NAME_LENGTH; index++) {
+        name[index] = 0;
+    }
 }
