@@ -15,10 +15,10 @@
 #include <unistd.h>
 
 #define FILEPATH "/tmp/local_stream_example"
-
+#define BUFF_SIZE 10
 
 int main() {
-    char buff[10];
+    char buff[BUFF_SIZE];
     int sockFD;
     struct sockaddr_un serv;
 
@@ -26,10 +26,12 @@ int main() {
     strcpy(serv.sun_path, FILEPATH);
 
     sockFD = socket(AF_LOCAL, SOCK_STREAM, 0);
-    connect(sockFD, &serv, sizeof(struct sockaddr_un));
 
-    recv(sockFD, buff, 10, 0);
+    //  Привязка адреса происходит в момент подключения
+    connect(sockFD, (struct sockaddr*)&serv, sizeof(struct sockaddr_un));
+
+    recv(sockFD, buff, BUFF_SIZE, 0);
     printf("%s\n", buff);
-    send(sockFD, "Hello!", 10, 0);
+    send(sockFD, "Hello!", BUFF_SIZE, 0);
     close(sockFD);
 }
