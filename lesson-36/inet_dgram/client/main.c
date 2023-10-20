@@ -1,10 +1,10 @@
 /**
- *  19.10.2023
+ *  20.10.2023
  *
  *  Простой обмен через сокеты
  *  Семейство: AF_INET
- *  Тип: SOCK_STREAM
- *  Сервер
+ *  Тип: SOCK_DGRAM
+ *  Клиент
 */
 
 #include <sys/socket.h>
@@ -21,25 +21,18 @@
 int main() {
     char buff[BUFF_SIZE];
     int sockFD;
-    struct sockaddr_in serv, client;
-    socklen_t peerAddrLen;
+    struct sockaddr_in serv;
+    socklen_t size = sizeof(struct sockaddr_in);
     struct in_addr addr;
 
-    //  Требуется сетевой порядок
     addr.s_addr = inet_addr(SERV_ADDR);
     serv.sin_family = AF_INET;
     serv.sin_addr = addr;
     serv.sin_port = htons(SERV_PORT);
 
-    sockFD = socket(AF_INET, SOCK_STREAM, 0);
-    bind(sockFD, (struct sockaddr*)&serv, sizeof(struct sockaddr_in));
-    listen(sockFD, 1);
-
-    int acceptedFD = accept(sockFD, (struct sockaddr*)&client, &peerAddrLen);
-    send(acceptedFD, "Hi", BUFF_SIZE, 0);
-
-    recv(acceptedFD, buff, BUFF_SIZE, 0);
+    sockFD = socket(AF_INET, SOCK_DGRAM, 0);
+    sendto(sockFD, "Hello!", BUFF_SIZE, 0, (struct sockaddr*)&serv, size);
+    recvfrom(sockFD, buff, BUFF_SIZE, 0, (struct sockaddr*)&serv, &size);
     printf("%s\n", buff);
-    close(acceptedFD);
     close(sockFD);
 }
