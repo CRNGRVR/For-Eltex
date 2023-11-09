@@ -56,14 +56,14 @@ int main() {
     //  Заголовок добавляется в начало сообщения
     memcpy(buff, &header, UDP_HEADER_SIZE);
     memcpy(buff + UDP_HEADER_SIZE, PAYLOAD, BUFF_SIZE);
-    sendto(sockFD, buff, BUFF_SIZE + UDP_HEADER_SIZE, 0, &serv,
-           sizeof(struct sockaddr_in));
+    sendto(sockFD, buff, BUFF_SIZE + UDP_HEADER_SIZE, 0,
+           (struct sockaddr*)&serv, sizeof(struct sockaddr_in));
     clearBuff(buff, BUFF_SIZE + UDP_HEADER_SIZE);
 
     while (1) {
-        recvfrom(sockFD, buff, BUFF_SIZE, 0, &serv, &len);
+        recvfrom(sockFD, buff, BUFF_SIZE, 0, (struct sockaddr*)&serv, &len);
 
-        struct udphdr *rcv_header = buff + IP_HEADER_SIZE;
+        struct udphdr *rcv_header = (struct udphdr*)(buff + IP_HEADER_SIZE);
         if (ntohs(rcv_header->dest) == FICTIONAL_CLIENT_PORT) {
             printf("%s\n", buff + IP_HEADER_SIZE + UDP_HEADER_SIZE);
             break;
